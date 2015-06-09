@@ -1,0 +1,71 @@
+<html><head><title>Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head><body>
+{% if updatemessage %}
+<b><font color="red">{{ updatemessage }}</font></b><br><br>
+{% endif %}
+{% if redirecturl %}
+Click <a href="{{ redirecturl }}">here</a> to proceed to your original URL: {{ redirecturl }}<br><br>
+{% endif %}
+Existing users:<br><table border=1><tr><th>Username</th><th>Login IP</th><th>Admin?</th></tr>
+{% for user in userrows %}
+<tr>
+	<td>{{ user[0] }}<br>
+		{% if user[0] != loggedinuser %}
+		<form action="/users" method="POST">
+			<input type="hidden" name="action" value="delete">
+			<input type="hidden" name="username" value="{{ user[0] }}">
+			{% if redirecturl %}
+			<input type="hidden" name="redirectto" value="{{ redirecturl }}">
+			{% endif %}
+			<input type="submit" name="delete" value="Delete">
+		</form>
+		{% endif %}
+	</td>
+	<td>{{ user[1] }}<br>
+		<form action="/users" method="POST">
+			<input type="hidden" name="action" value="logout">
+			<input type="hidden" name="username" value="{{ user[0] }}">
+			{% if redirecturl %}
+			<input type="hidden" name="redirectto" value="{{ redirecturl }}">
+			{% endif %}
+			<input type="submit" name="logout" value="Log Out">
+		</form>
+	</td>
+	<td>
+	{% if user[2] == 'y' %}
+	Yes
+	{% else %}
+	No
+	{% endif %}
+	<br>
+		{% if user[0] != loggedinuser and user[0] != 'admin' %}
+		<form action="/users" method="POST">
+			<input type="hidden" name="action" value="changeadmin">
+			<input type="hidden" name="username" value="{{ user[0] }}">
+			{% if redirecturl %}
+			<input type="hidden" name="redirectto" value="{{ redirecturl }}">
+			{% endif %}
+			{% if user[2] == 'y' %}
+			<input type="submit" name="admin" value="Remove Admin">
+			{% else %}
+			<input type="submit" name="admin" value="Make Admin">
+			{% endif %}
+		</form>
+		{% endif %}
+	</td>
+</tr>
+{% endfor %}
+</table>
+<br>
+<form action="/users" method="POST">
+	<input type="hidden" name="action" value="add">
+	Username: <input type="text" name="username" value=""><br>
+	Password: <input type="password" name="password" value=""><br>
+	Admin? <input type="checkbox" name="admin" value="y"><br>
+	{% if redirecturl %}
+	<input type="hidden" name="redirectto" value="{{ redirecturl }}">
+	{% endif %}
+	<input type="submit" name="add" value="Add User">
+</form>
+</html>

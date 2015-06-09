@@ -1,0 +1,17 @@
+<html><head><title>Login</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+{% if errormessage %}
+<b><font color="red">{{ errormessage }}</font></b><br>
+{% endif %}
+Login<br>
+<form action="/login" method="POST">
+	<input type="text" name="username" value="admin"><br>
+	<input type="password" name="password" value=""><br>
+	{% if redirecturl %}
+	<input type="hidden" name="redirectto" value="{{ redirecturl }}"><br>
+	{% endif %}
+	<input type="submit" name="submit" value="Submit"><br>
+</form>
+</body></html>
