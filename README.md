@@ -1,6 +1,6 @@
 # PITM
 ### Introduction
-"People in the Middle" (PITM) is a script/application that runs under [mitmproxy].  It was created as an alternative to the *--singleuser* and *--htpasswd* authentication options.  The reason for this is that, while "well behaved browsers" may follow work with proxy authentication, I found that many applications (e.g. those on Android) do not.  Instead of prompting for username/password, they merely suggest that the Internet is not working.  This defeats the purpose of having a transparent proxy.  An alternative to this is to leave mitmproxy unauthenticated, but that's not so wise in a public IP space.
+"People in the Middle" (PITM) is a script/application that runs under [mitmproxy].  It was created as an alternative to the *--singleuser* and *--htpasswd* authentication options.  The reason for this is that, while "well behaved browsers" may work with proxy authentication, I found that many applications (e.g. those on Android) do not.  Instead of prompting for username/password, they merely suggest that an Internet connection has failed.  This defeats the purpose of having a transparent proxy.  An alternative to this is to leave mitmproxy unauthenticated, but that's not so wise in a public IP space.
 
 ### Security
 ##### IP-based authorization
@@ -25,12 +25,13 @@ Make sure PITM has write access to the current directory, as it will store user 
 $ mitmproxy -s "pitm.py"
 ```
 
-Once mitmproxy+PITM is started, connect your browser/OS to the mitmproxy IP/port with no username/password and then navigate to any website in a browser.  You will be automatically redirected to a virtual/internal Flask application with a URL that will suggest itself as https://users.proxy.eskibars.com.  After you log in, Internet access will be granted to your IP.  If you need to add/edit users in the future, navigate a browser to https://users.proxy.eskibars.com
+Once mitmproxy+PITM is started, connect your browser/OS to the mitmproxy IP/port with no username/password and then navigate to any website in a browser.  You will be automatically redirected to a virtual/internal Flask application with a URL that will suggest itself as https://users.proxy.eskibars.com.  After you log in, Internet access will be granted to your IP.  If you need to add/edit users in the future, navigate a browser to https://users.proxy.eskibars.com/users
+
 ### Todo
 1. Write tests
 2. Code commenting
 3. More configurability (database path, URL)
-4. Logging
+4. Better logging controls
 
 License
 ----
