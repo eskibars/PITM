@@ -1,6 +1,6 @@
 # PITM
 ### Introduction
-"People in the Middle" (PITM) is an script/application that runs under [mitmproxy].  It was created as an alternative to the *--singleuser* and *--htpasswd* authentication options.  The reason for this is that, while "well behaved browsers" may follow work with proxy authentication, I found that many applications (e.g. those on Android) do not.  Instead of prompting for username/password, they merely suggest that the Internet is not working.  This defeats the purpose of having a transparent proxy.  An alternative to this is to leave mitmproxy unauthenticated, but that's not so wise in a public IP space.
+"People in the Middle" (PITM) is a script/application that runs under [mitmproxy].  It was created as an alternative to the *--singleuser* and *--htpasswd* authentication options.  The reason for this is that, while "well behaved browsers" may follow work with proxy authentication, I found that many applications (e.g. those on Android) do not.  Instead of prompting for username/password, they merely suggest that the Internet is not working.  This defeats the purpose of having a transparent proxy.  An alternative to this is to leave mitmproxy unauthenticated, but that's not so wise in a public IP space.
 
 ### Security
 ##### IP-based authorization
