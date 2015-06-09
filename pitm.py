@@ -173,7 +173,7 @@ def start(context, argv=[]):
 		# no admin password was supplied in the start-up parameters.  check if there are already administrators
 		conn = sqlite3.connect('users.db')
 		c = conn.cursor()
-		c.execute("CREATE TABLE IF NOT EXISTS users (username UNIQUE, password, loginip, admin, authid)")
+		c.execute("CREATE TABLE IF NOT EXISTS users (username TEXT UNIQUE, password TEXT, loginip TEXT, admin TEXT, authid TEXT)")
 		conn.commit()
 		
 		# any admin account will do
@@ -186,7 +186,7 @@ def start(context, argv=[]):
 		context.masterpassword = argv[1];
 		conn = sqlite3.connect('users.db')
 		c = conn.cursor()
-		c.execute("CREATE TABLE IF NOT EXISTS users (username UNIQUE, password, loginip, admin, authid)")
+		c.execute("CREATE TABLE IF NOT EXISTS users (username TEXT UNIQUE, password TEXT, loginip TEXT, admin TEXT, authid TEXT)")
 		conn.commit()
 		
 		# try to find the admin user
