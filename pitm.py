@@ -32,14 +32,14 @@ def check_is_logged_in(r, sqlitecursor, requireadmin=False):
 		row = sqlitecursor.fetchone()
 		if row:
 			return row[0]
-		else
+		else:
 			return False
 	else:
 		sqlitecursor.execute("SELECT username FROM users WHERE loginip = ?", (r.remote_addr,))
 		row = sqlitecursor.fetchone()
 		if row:
 			return row[0]
-		else
+		else:
 			return False
 	return user
 
